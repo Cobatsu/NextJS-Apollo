@@ -4,8 +4,6 @@ import * as Yup from 'yup';
 import {useMutation,gql} from '@apollo/client'
 import styles from '../styles/register.module.css'
 import {useRouter} from 'next/router'
-import user from '../models/user';
-
 
 const REGISTER_MUTATION = gql`
     mutation Register($user:RegisterInput!){

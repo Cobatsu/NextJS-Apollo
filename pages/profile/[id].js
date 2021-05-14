@@ -30,7 +30,7 @@ const Profile = ({user}) => {
 export async function getServerSideProps({ params }) {
 
     const apolloClient = initializeApollo()
-    const user = await apolloClient.query({
+    const user = await apolloClient.query({ // this just sends the query to apollo server and pass data to comp via prop
       query: GET_USER_QUERY,
       variables:{
           _id:params.id
