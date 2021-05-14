@@ -1,7 +1,17 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { schema } from '../../apollo/schema'
+import mongoose from 'mongoose'
+const _Url = "mongodb+srv://Fatih:2231223122@cluster0.ftrtr.mongodb.net/NextJS-Apollo?retryWrites=true&w=majority"
 
-const apolloServer = new ApolloServer({ schema })
+mongoose.connect(_Url,{ useUnifiedTopology: true,useNewUrlParser: true })
+.then(()=>console.log('connected to DB'))
+.catch((err)=>console.log(err,"ERROR"));
+
+const apolloServer = new ApolloServer({ schema ,context:(ctx)=>{
+
+  console.log("HELLOOO")
+
+}})
 
 export const config = {
   api: {

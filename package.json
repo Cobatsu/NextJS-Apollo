@@ -7,13 +7,16 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "^3.0.2",
+    "@apollo/client": "^3.3.18",
     "apollo-server-micro": "^2.14.2",
+    "formik": "^2.2.6",
     "graphql": "^14.0.2",
+    "mongoose": "^5.12.8",
     "next": "latest",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "yup": "^0.32.9"
   },
   "license": "MIT"
 }
