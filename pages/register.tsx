@@ -51,7 +51,7 @@ const Register = ()=> {
         })
      }
 
-     return  <div className={styles.formWrapper} > <Formik 
+     return  <div className={styles.formWrapper}> <Formik 
       
       initialValues={ {
         firstName:"",
@@ -75,11 +75,9 @@ const Register = ()=> {
                  <Field name="firstName" component={MyInput} placeholder="First Name"/>
                  <Field name="lastName" component={MyInput} placeholder="Last Name"/>
                  <Field name="email" component={MyInput} placeholder="Email"/>
-                 
                  <button className={styles.SubmitButton} type="submit" disabled={isSubmitting} > REGISTER </button>
-                 
+               
               </form>
-
           }
 
         </Formik> 

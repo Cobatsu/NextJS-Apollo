@@ -1,6 +1,7 @@
 import React from 'react'
 import { initializeApollo } from '../../apollo/client'
 import {gql} from '@apollo/client'
+import {GetServerSidePropsContext} from 'next'
 
 const GET_USER_QUERY = gql`
 
@@ -17,7 +18,6 @@ const GET_USER_QUERY = gql`
     }
 
 `
-
 const Profile = ({user}) => {
     const { firstName, lastName, email } = user.data.getUser
     return <div style={{display:'flex',flexDirection:'column'}}>
@@ -27,7 +27,7 @@ const Profile = ({user}) => {
     </div> 
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params } : GetServerSidePropsContext) {
 
     const apolloClient = initializeApollo()
     const user = await apolloClient.query({ // this just sends the query to apollo server and pass data to comp via prop
