@@ -1,4 +1,6 @@
 import UserModel from '../models/user'
+import { AuthenticationError } from 'apollo-server-micro'
+import jwt from 'jsonwebtoken'
 
 export const resolvers = {
   Query:{
@@ -10,11 +12,31 @@ export const resolvers = {
 
   },
   Mutation: {
+
     async register(_parent, _args, _context, _info) {
       const { user } = _args;
       const newUser = new UserModel({...user})
       const added = await newUser.save()
       return added;
+    },
+    async login(_parent, _args, _context, _info) {
+
+      const { user } = _args;
+      const userFound = await UserModel.findOne({email:user.email});
+
+        console.log(userFound)
+
+        if(userFound) {
+            if ( userFound.password == _args.user.password ) {
+                const token  = await jwt.sign( { username:userFound.username , email:userFound.email , _id:userFound._id } , "asdikjad", {expiresIn:"1d"});
+                return { ...userFound._doc , jwt:token }
+            } else {
+                throw new AuthenticationError("Username or Password is Incorrect !");
+            }
+        } else {
+            throw new AuthenticationError("Username or Password is Incorrect !");
+        }
+
     },
   },
 

@@ -7,11 +7,7 @@ mongoose.connect(_Url,{ useUnifiedTopology: true,useNewUrlParser: true })
 .then(()=>console.log('connected to DB'))
 .catch((err)=>console.log(err,"ERROR"));
 
-const apolloServer = new ApolloServer({ schema ,context:(ctx)=>{
-
-  console.log("HELLOOO")
-
-}})
+const apolloServer = new ApolloServer({ schema })
 
 export const config = {
   api: {
