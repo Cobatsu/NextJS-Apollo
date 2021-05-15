@@ -57,13 +57,13 @@ const Register = ()=> {
         firstName:Yup.string().max(8,'Must be 8 characters or less').required('This Field Can Not Be Blank !'),
         lastName:Yup.string().max(8,'Must be 8 characters or less').required('This Field Can Not Be Blank !'),
         email: Yup.string().email('Invalid email address').required('This Field Can Not Be Blank !'),
-        password: Yup.string().required('No password provided.') .min(8, 'Should be 8 chars minimum.')
+        password: Yup.string().required('No password provided. !') .min(8, 'Should be 8 chars minimum. !')
  
       })}
 
       onSubmit={submitHandler}> 
 
-          { ({handleSubmit,isSubmitting} )=> <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',alignItems:'center',width:"50%"}}>
+          { ({handleSubmit,isSubmitting} )=> <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
 
                  <Field name="firstName" component={MyInput} placeholder="First Name"/>
                  <Field name="lastName" component={MyInput} placeholder="Last Name"/>

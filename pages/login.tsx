@@ -45,7 +45,8 @@ const Login = ()=> {
             console.log(err)
 
             setErrors({
-                password:"Unvalid Password Or Email"
+                password:"Unvalid Password Or Email !",
+                email:"Unvalid Password Or Email !"
             })
 
         }
@@ -64,12 +65,12 @@ const Login = ()=> {
 
       validationSchema={Yup.object({
         email: Yup.string().email('Invalid email address').required('This Field Can Not Be Blank !'),
-        password: Yup.string().required('No password provided.') .min(8, ' should be 8 chars minimum.')
+        password: Yup.string().required('No password provided.') .min(8, ' Should be 8 chars minimum. !')
       })}
 
       onSubmit={submitHandler}> 
 
-          { ({handleSubmit,isSubmitting} )=> <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',alignItems:'center',width:"50%"}}>
+          { ({handleSubmit,isSubmitting} )=> <form onSubmit={handleSubmit} className={styles.form}>
 
             
                  <Field name="email" component={MyInput} placeholder="Email"/>

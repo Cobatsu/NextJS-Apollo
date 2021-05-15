@@ -11,11 +11,16 @@
     outline:none;
     border:none;
     padding:12px 15px;
-    align-self:center;
     margin-top:8px;
     border-radius:5px;
     background:#7f03fc;
     color:white;
+    align-self: flex-start;
+}
+
+.form {
+    display:flex;
+    flex-direction:column;
 }
 
 .formInput {
