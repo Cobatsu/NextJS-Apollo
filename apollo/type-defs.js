@@ -1,34 +1,32 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
-export const typeDefs = gql`  
-
+export const typeDefs = gql`
   type User {
-    _id:ID!
-    firstName:String!
-    lastName:String!
-    email:String!
-    password:String!
+    _id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
   }
 
   input RegisterInput {
-    firstName:String!
-    lastName:String!
-    email:String!
-    password:String!
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
   }
 
   input LoginInput {
-    email:String!
-    password:String!
+    email: String!
+    password: String!
   }
 
   type Query {
-    getUser(_id:ID!):User!
+    getUser(_id: ID!): User!
   }
 
   type Mutation {
-    login(user:LoginInput!):User!
-    register(user:RegisterInput!):User!
+    login(user: LoginInput!): User!
+    register(user: RegisterInput!): User!
   }
-
-`
+`;

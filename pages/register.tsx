@@ -4,8 +4,8 @@ import * as Yup from "yup";
 import { useMutation, gql } from "@apollo/client";
 import styles from "../styles/register.module.css";
 import { useRouter } from "next/router";
-import { FieldProps, FormikErrors } from "formik";
 import { MyInput } from "../components/form";
+
 
 const REGISTER_MUTATION = gql`
   mutation Register($user: RegisterInput!) {
@@ -77,7 +77,9 @@ const Register = () => {
               component={MyInput}
               placeholder="Last Name"
             />
+
             <Field name="email" component={MyInput} placeholder="Email" />
+
             <Field
               name="password"
               type="password"
