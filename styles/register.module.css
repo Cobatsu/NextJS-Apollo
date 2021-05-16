@@ -11,7 +11,7 @@
     outline:none;
     border:none;
     padding:12px 15px;
-    margin-top:8px;
+    margin-top:18px;
     border-radius:5px;
     background:#7f03fc;
     color:white;
@@ -21,17 +21,17 @@
 .form {
     display:flex;
     flex-direction:column;
+    width:300px;
 }
 
 .formInput {
 
     border-radius: 5px;
     padding:10px;
-    margin-bottom: 10px;
     outline:none;
     border: none;
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-    transition: 150ms;
+    transition: 100ms;
+    
 }
 
 
