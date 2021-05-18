@@ -2,28 +2,36 @@ import React from "react";
 import { initializeApollo } from "../apollo/client";
 import { gql } from "@apollo/client";
 import { GetServerSidePropsContext } from "next";
-import {withAuth} from "../components/withAuth";
+import { withAuth } from "../components/withAuth";
 
-
-const Profile = ({user,pageProps}) => {
-
+const Profile = ({ user }) => {
   return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <span>{pageProps.greeting}</span>
-          <span>{user.firstName}</span>
-          <span>{user.lastName}</span>
-          <span>{user.email}</span>
-        </div>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <span>{user.firstName}</span>
+      <span>{user.lastName}</span>
+      <span>{user.email}</span>
+    </div>
   );
 };
 
+type ObjWithChildren<T> = T & { children: string };
 
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      greeting:"HELLO"
-    }, 
-  }
+interface Test<T> {
+  (obj: ObjWithChildren<T>): void;
 }
+type AdditionalProps = {
+  name: string;
+};
+const test = () => {};
+
+const hof = (fn: Test<AdditionalProps>) => {
+  fn({
+    name: "hello",
+    children:"hello"
+  });
+};
+
+//more test ............................
+//hello
 
 export default withAuth(Profile);

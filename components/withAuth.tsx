@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useMutation, useLazyQuery, gql } from "@apollo/client";
-import { useRouter } from "next/router";
+import Router from "next/router";
+import { initializeApollo } from "../apollo/client";
+import { isTypeSubTypeOf } from "graphql";
 
 const LOGIN_MUTATION = gql`
   mutation Login($user: LoginInput) {
@@ -20,42 +22,50 @@ const GET_USER_QUERY = gql`
   }
 `;
 
-interface IUser {
-  firstName: String;
-  lastName: String;
-  email: String;
-}
-type TUser = { user: IUser; pageProps: any };
-type Private<T> = { component: React.FC<T>; pageProps: any };
 
-const PrivateComponent: React.FC<Private<TUser>> = ({
-  component: Component,
-  pageProps,
-}) => {
-  const router = useRouter();
-  const [login] = useMutation(LOGIN_MUTATION, {
-    onError: () => {
-      localStorage.removeItem("token");
-      router.push("/login");
-    },
-  });
-  const [getUser, { data }] = useLazyQuery(GET_USER_QUERY);
-  useEffect(() => {
-    login()
-      .then((response: any) => {
-        const { data } = response;
-        getUser({
-          variables: {
-            _id: data.login.userID,
-          },
+export const withAuth  = <T,>(C: React.FC<T>) => {
+  return class PrivateComponent extends React.Component {
+    static async getInitialProps() {
+      try {
+        const apollo = initializeApollo();
+        console.log(apollo);
+        const loginResponse = await apollo.mutate({
+          mutation: LOGIN_MUTATION,
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
-  return data ? <Component user={data.getUser} pageProps={pageProps} /> : null;
+        const userResponse = await apollo.query({
+          query: GET_USER_QUERY,
+          variables:{
+            _id:loginResponse.data.login.userID
+          }
+        });
+
+        if (userResponse && userResponse.data && userResponse.data.getUser) {
+          return {
+            props: {
+              user: userResponse.data.getUser,
+            },
+          };
+        } else {
+
+            return {
+              props:{
+                user:null
+              }
+            }
+          
+        }
+
+      } catch(err){  
+        
+        console.log(err)
+  
+      }
+    }
+
+    render() {
+      return <C {...this.props} />;
+    }
+  };
 };
-export const withAuth = (Component: React.FC<TUser>) => (props :any) =>
-  <PrivateComponent component={Component} pageProps={props} />;
+

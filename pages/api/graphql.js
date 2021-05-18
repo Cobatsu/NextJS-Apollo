@@ -9,8 +9,6 @@ mongoose.connect(_Url,{ useUnifiedTopology: true,useNewUrlParser: true })
 
 const apolloServer = new ApolloServer({ schema , context:({req})=>{
 
-    console.log(req)
-
     return {
          token:req.headers.authorization
     }
