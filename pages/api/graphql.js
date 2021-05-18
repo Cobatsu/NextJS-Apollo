@@ -7,7 +7,15 @@ mongoose.connect(_Url,{ useUnifiedTopology: true,useNewUrlParser: true })
 .then(()=>console.log('connected to DB'))
 .catch((err)=>console.log(err,"ERROR"));
 
-const apolloServer = new ApolloServer({ schema })
+const apolloServer = new ApolloServer({ schema , context:({req})=>{
+
+    console.log(req)
+
+    return {
+         token:req.headers.authorization
+    }
+
+}})
 
 export const config = {
   api: {

@@ -21,12 +21,23 @@ export const typeDefs = gql`
     password: String!
   }
 
+  type LoginReturn {
+    token: String!
+    userID: ID!
+  }
+
+  type RegisterReturn {
+    userID: ID!
+  }
+
+
   type Query {
     getUser(_id: ID!): User!
   }
 
   type Mutation {
-    login(user: LoginInput!): User!
-    register(user: RegisterInput!): User!
+    login(user: LoginInput): LoginReturn!
+    register(user: RegisterInput!) : RegisterReturn!
   }
+  
 `;

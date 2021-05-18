@@ -10,18 +10,23 @@ import { MyInput } from "../components/form";
 const LOGIN_MUTATION = gql`
   mutation Login($user: LoginInput!) {
     login(user: $user) {
-      _id
-      firstName
-      lastName
-      email
+      token
+      userID
     }
   }
 `;
 
+interface LoginI {
+  email:String;
+  password:String;
+}
+
 const Login = () => {
-  const [register] = useMutation(LOGIN_MUTATION, {
+  const [login] = useMutation(LOGIN_MUTATION, {
     onCompleted: (data) => {
-      router.push(`/profile/${data.login._id}`);
+      const { token } = data.login;
+      localStorage.setItem('token',token);
+      router.push(`/profile`);
     },
   });
 
@@ -29,7 +34,7 @@ const Login = () => {
 
   const submitHandler = async (values, { setErrors }: FormikHelpers<any>) => {
     try {
-      await register({
+      await login({
         variables: {
           user: {
             ...values,
@@ -49,10 +54,10 @@ const Login = () => {
   return (
     <div className={styles.formWrapper}>
       {" "}
-      <Formik
+      <Formik<LoginI>
         initialValues={{
-          email: "",
-          password: "",
+         email:"",
+         password:"",
         }}
         validateOnChange={false}
         validateOnBlur={false}
@@ -75,15 +80,19 @@ const Login = () => {
               component={MyInput}
               placeholder="Password"
             />
+            <div className={styles.ButtonFields}>
+              <button
+                className={styles.SubmitButton}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {" "}
+                LOGIN{" "}
+              </button>
 
-            <button
-              className={styles.SubmitButton}
-              type="submit"
-              disabled={isSubmitting}
-            >
-              {" "}
-              LOGIN{" "}
-            </button>
+              <span onClick={()=>router.push('/register')} className={styles.AdditiveButton}>Don't have an account yet ?</span>
+            </div>
+
           </form>
         )}
       </Formik>

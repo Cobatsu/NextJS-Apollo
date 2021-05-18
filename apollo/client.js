@@ -4,6 +4,16 @@ import { setContext } from "@apollo/client/link/context";
 
 let apolloClient;
 
+const authLink = setContext((_,prevContext)=>{
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...prevContext.headers,
+      authorization: token || ""
+    }
+  }
+})
+
 function createIsomorphLink() {
   if (typeof window === "undefined") {
     const { SchemaLink } = require("@apollo/client/link/schema");
@@ -12,6 +22,7 @@ function createIsomorphLink() {
   } else {
     const { HttpLink } = require("@apollo/client/link/http");
     return from([
+      authLink,
       new HttpLink({
         uri: "/api/graphql",
         credentials: "same-origin",

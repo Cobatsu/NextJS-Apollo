@@ -1,4 +1,4 @@
-import React from "react";
+import React,{FunctionComponent} from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { useMutation, gql } from "@apollo/client";
@@ -6,17 +6,20 @@ import styles from "../styles/register.module.css";
 import { useRouter } from "next/router";
 import { MyInput } from "../components/form";
 
-
 const REGISTER_MUTATION = gql`
   mutation Register($user: RegisterInput!) {
     register(user: $user) {
-      _id
-      firstName
-      lastName
-      email
+        userID
     }
   }
 `;
+
+interface RegisterI {
+  firstName:String;
+  lastName: String;
+  email: String;
+  password: String;
+}
 
 const Register = () => {
   const [register] = useMutation(REGISTER_MUTATION, {
@@ -40,7 +43,7 @@ const Register = () => {
   return (
     <div className={styles.formWrapper}>
       {" "}
-      <Formik
+      <Formik<RegisterI>
         initialValues={{
           firstName: "",
           lastName: "",
@@ -87,14 +90,18 @@ const Register = () => {
               placeholder="Password"
             />
 
-            <button
-              className={styles.SubmitButton}
-              type="submit"
-              disabled={isSubmitting}
-            >
-              {" "}
-              REGISTER{" "}
-            </button>
+            <div className={styles.ButtonFields}>
+              <button
+                className={styles.SubmitButton}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {" "}
+                REGISTER{" "}
+              </button>
+
+              <span  onClick={()=>router.push('/login')} className={styles.AdditiveButton}> Go to login page </span>
+            </div>
           </form>
         )}
       </Formik>
