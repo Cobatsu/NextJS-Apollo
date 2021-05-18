@@ -1,7 +1,6 @@
 import UserModel from "../models/user";
 import { AuthenticationError } from "apollo-server-micro";
 import jwt from "jsonwebtoken";
-import { VariablesInAllowedPositionRule } from "graphql";
 
 const getTokenID = async (token) => {
 
@@ -54,7 +53,7 @@ export const resolvers = {
       try {
         if(_context.token){
           const id = await getTokenID(_context.token);
-          payload =  {userID:id}
+          payload =  {userID:id,token:_context.token}
         } else {
           const {jwt,userID} = await handleLogin(_args.user);
           payload =  {userID,token:jwt}

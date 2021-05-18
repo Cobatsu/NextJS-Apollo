@@ -20,11 +20,22 @@ const GET_USER_QUERY = gql`
   }
 `;
 
-const PrivateComponent: React.FC<any> = ({component:Component}) => {
+interface IUser {
+  firstName: String;
+  lastName: String;
+  email: String;
+}
+type TUser = { user: IUser; pageProps: any };
+type Private<T> = { component: React.FC<T>; pageProps: any };
+
+const PrivateComponent: React.FC<Private<TUser>> = ({
+  component: Component,
+  pageProps,
+}) => {
   const router = useRouter();
   const [login] = useMutation(LOGIN_MUTATION, {
     onError: () => {
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       router.push("/login");
     },
   });
@@ -44,9 +55,7 @@ const PrivateComponent: React.FC<any> = ({component:Component}) => {
       });
   }, []);
 
-  return data ? <Component user = {data.getUser} /> : null;
+  return data ? <Component user={data.getUser} pageProps={pageProps} /> : null;
 };
-
-export const withAuth = (Component) => () => <PrivateComponent component = {Component} />
-
-
+export const withAuth = (Component: React.FC<TUser>) => (props :any) =>
+  <PrivateComponent component={Component} pageProps={props} />;

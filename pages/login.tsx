@@ -42,12 +42,12 @@ const Login = () => {
         },
       });
     } catch (err) {
-      console.log(err);
-
+    
       setErrors({
         password: "Unvalid Password Or Email !",
         email: "Unvalid Password Or Email !",
       });
+      
     }
   };
 
