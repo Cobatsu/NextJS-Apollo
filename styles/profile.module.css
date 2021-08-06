@@ -1,0 +1,26 @@
+.wrapper {
+  display: block;
+}
+
+.createPost {
+  display: block;
+}
+
+.subButton {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 180px;
+  width:300px;
+  
+}

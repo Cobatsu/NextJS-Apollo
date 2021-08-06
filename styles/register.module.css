@@ -1,0 +1,58 @@
+
+.formWrapper {
+    display:flex;
+    height: 100%;
+    width:100%;
+    justify-content: center;
+    align-items: center;   
+}
+
+.SubmitButton{
+    outline:none;
+    border:none;
+    padding:12px 15px;
+    border-radius:5px;
+    background:#7f03fc;
+    color:white;
+}
+
+.form {
+    display:flex;
+    flex-direction:column;
+    width:300px;
+}
+
+.formInput {
+
+    border-radius: 5px;
+    padding:10px;
+    outline:none;
+    border: none;
+    transition: 100ms;
+    
+}
+
+.AdditiveButton {
+    color:#7f03fc;
+    margin-left: 13px;
+    font-size: 15px;
+}
+.AdditiveButton:hover{
+
+    cursor: pointer;
+
+}
+
+
+.ButtonFields{
+
+    display: flex;
+    padding: 15px 0;
+    align-items:center;
+
+}
+
+
+.SubmitButton:hover{
+    cursor:pointer;
+}
