@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p $PORT"
+    "start": "next start -p $PORT"
   },
   "dependencies": {
     "@apollo/client": "^3.4.5",
