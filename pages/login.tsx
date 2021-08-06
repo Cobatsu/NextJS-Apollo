@@ -22,7 +22,7 @@ interface LoginI {
 
 const Login = () => {
   const [login] = useMutation(LOGIN_MUTATION, {
-    onCompleted: (data) => {  router.push(`/profile?page=0`); },
+    onCompleted: (data) => {  router.push(`/profile?page=1`); }
   });
 
   const router = useRouter();
@@ -36,8 +36,8 @@ const Login = () => {
           },
         },
       });
-    } catch (err) { //we catch the apollo errors we re throwing
-    
+    } catch (err) { 
+  
       setErrors({
         password: "Unvalid Password Or Email !",
         email: "Unvalid Password Or Email !",
