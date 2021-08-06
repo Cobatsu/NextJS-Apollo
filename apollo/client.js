@@ -29,7 +29,7 @@ function createLink(cookie) {
   return from([
     errorLink,
     new HttpLink({
-      uri: "http://localhost:3000/api/graphql",
+      uri: "https://nextjs-list.herokuapp.com/api/graphql",
       credentials: "include",
       headers: {
         cookie,
