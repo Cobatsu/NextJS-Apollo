@@ -5,7 +5,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start -p $PORT",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "heroku-postbuild":"npm run build"
   },
   "dependencies": {
     "@apollo/client": "^3.3.18",
