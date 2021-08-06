@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start -H 0.0.0.0 -p $PORT",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
