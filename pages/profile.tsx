@@ -1,6 +1,5 @@
 import React, { useState, useEffect, EventHandler } from "react";
 import { gql, useMutation, useApolloClient } from "@apollo/client";
-import { getDataFromTree } from "@apollo/client/react/ssr";
 import Router from "next/router";
 import styles from "../styles/profile.module.css";
 import { Formik, FormikProps } from "formik";
