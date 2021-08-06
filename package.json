@@ -5,27 +5,27 @@
     "dev": "next",
     "build": "next build",
     "start": "next start -p $PORT",
-    "heroku-postbuild":"npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.18",
+    "@apollo/client": "^3.4.5",
     "@badrap/bar-of-progress": "^0.1.2",
-    "@material-ui/core": "^4.11.4",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "apollo-link-error": "^1.1.13",
-    "apollo-server-express": "^2.24.1",
-    "apollo-server-micro": "^2.14.2",
+    "apollo-server-express": "^2.25.2",
+    "apollo-server-micro": "^2.25.2",
     "cookie": "^0.4.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "formik": "^2.2.6",
+    "formik": "^2.2.9",
     "graphql": "^14.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.8",
+    "mongoose": "^5.13.5",
     "next": "latest",
     "next-cookies": "^2.0.3",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.12",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-cookie": "^4.0.3",
@@ -34,9 +34,9 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^15.3.0",
-    "@types/react": "^17.0.5",
-    "@types/react-dom": "^17.0.5",
-    "typescript": "^4.2.4"
+    "@types/node": "^15.14.7",
+    "@types/react": "^17.0.16",
+    "@types/react-dom": "^17.0.9",
+    "typescript": "^4.3.5"
   }
 }
