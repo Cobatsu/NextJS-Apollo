@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
 const _Url =
-  "mongodb+srv://Fatih:2231223122@cluster0.ftrtr.mongodb.net/NextJS-Apollo?retryWrites=true&w=majority";
+  "";
 
 export const config = {
   api: {
